@@ -1,0 +1,100 @@
+/* Nuestra Vida v0.17: compra compacta, 4 productos por fila */
+.shop-grid,
+.history-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 6px !important;
+}
+.shop-card .done,
+.history-product {
+  min-height: 82px !important;
+  padding: 6px 25px 6px 4px !important;
+  border-radius: 13px !important;
+}
+.shop-card .done i,
+.history-product > i {
+  font-size: 24px !important;
+}
+.shop-card .done b,
+.history-product > span {
+  font-size: 11px !important;
+  line-height: 1.1 !important;
+  overflow-wrap: anywhere;
+}
+.history-product > small {
+  font-size: 8px !important;
+}
+.shop-card .move-shop,
+.history-product .history-add,
+.history-product .history-remove {
+  transform: scale(.86);
+  transform-origin: center;
+}
+@media (max-width: 340px) {
+  .shop-grid,
+  .history-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 4px !important;
+  }
+  .shop-card .done,
+  .history-product {
+    min-height: 76px !important;
+  }
+  .shop-card .done i,
+  .history-product > i {
+    font-size: 21px !important;
+  }
+}
+
+/* v0.18: nombres con todo el ancho e iconos de notas alineados */
+.shop-card .done {
+  padding-left: 3px !important;
+  padding-right: 3px !important;
+}
+.shop-card .done b,
+.history-product > span {
+  display: block !important;
+  width: 100% !important;
+  max-width: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+  hyphens: none !important;
+  text-align: center !important;
+  font-size: 10.5px !important;
+  letter-spacing: -0.2px !important;
+}
+.shop-card .move-shop {
+  width: 25px !important;
+  height: 25px !important;
+  right: 3px !important;
+  top: 3px !important;
+  padding: 0 !important;
+}
+.note > div:first-of-type {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  min-height: 36px !important;
+  gap: 8px !important;
+}
+.note > div:first-of-type > i {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 36px !important;
+  width: 36px !important;
+  height: 36px !important;
+  margin: 0 !important;
+  font-style: normal !important;
+  line-height: 1 !important;
+}
+.note > div:first-of-type .item-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  margin-left: auto !important;
+}
