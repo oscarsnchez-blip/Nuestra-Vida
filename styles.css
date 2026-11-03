@@ -76,3 +76,6 @@ html,body{background:var(--page);color:var(--ink)}header,nav{background:#f4f1e9f
 
 /* v0.92 indicadores de eventos más visibles */
 .calendar .day.has::after{width:7px!important;height:7px!important;bottom:1px!important;left:calc(50% - 3.5px)!important;background:#ff2f6d!important;border:1px solid #fff!important;box-shadow:0 0 0 1px rgba(255,47,109,.28),0 1px 5px rgba(255,47,109,.65)!important}.calendar .day.has-two::after{left:calc(50% - 8px)!important}.calendar .day.has-two::before{width:7px!important;height:7px!important;bottom:1px!important;left:calc(50% + 1px)!important;background:#ff9f1c!important;border:1px solid #fff!important;box-shadow:0 0 0 1px rgba(255,159,28,.28),0 1px 5px rgba(255,159,28,.6)!important}.calendar .day.active.has::after,.calendar .day.active.has-two::before{border-color:var(--accent-dark)!important}
+
+/* v0.93 ajuste fino de indicadores de eventos */
+.calendar .day.has::after{width:5.5px!important;height:5.5px!important;bottom:-1px!important;left:calc(50% - 2.75px)!important;box-shadow:0 0 0 1px rgba(255,47,109,.22),0 1px 3px rgba(255,47,109,.5)!important}.calendar .day.has-two::after{left:calc(50% - 6.5px)!important}.calendar .day.has-two::before{width:5.5px!important;height:5.5px!important;bottom:-1px!important;left:calc(50% + 1px)!important;box-shadow:0 0 0 1px rgba(255,159,28,.22),0 1px 3px rgba(255,159,28,.48)!important}
