@@ -73,3 +73,6 @@ html,body{background:var(--page);color:var(--ink)}header,nav{background:#f4f1e9f
 
 /* v0.91 contraseña por nota, integrada en el formulario */
 .note-locked h2{color:#51343e!important}.note-locked p{color:#8a737b!important;font-style:italic!important}.note-inline-pin input{font-size:13px!important;font-weight:700!important;letter-spacing:0!important;text-align:left!important}.nv-pin-dialog input{font-size:14px!important;font-weight:700!important;letter-spacing:0!important;text-align:left!important}.nv-pin-dialog label{font-size:12px!important}
+
+/* v0.92 indicadores de eventos más visibles */
+.calendar .day.has::after{width:7px!important;height:7px!important;bottom:1px!important;left:calc(50% - 3.5px)!important;background:#ff2f6d!important;border:1px solid #fff!important;box-shadow:0 0 0 1px rgba(255,47,109,.28),0 1px 5px rgba(255,47,109,.65)!important}.calendar .day.has-two::after{left:calc(50% - 8px)!important}.calendar .day.has-two::before{width:7px!important;height:7px!important;bottom:1px!important;left:calc(50% + 1px)!important;background:#ff9f1c!important;border:1px solid #fff!important;box-shadow:0 0 0 1px rgba(255,159,28,.28),0 1px 5px rgba(255,159,28,.6)!important}.calendar .day.active.has::after,.calendar .day.active.has-two::before{border-color:var(--accent-dark)!important}
