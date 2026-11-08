@@ -1,4 +1,4 @@
-const VERSION='v0.95', $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const VERSION='v0.94', $=s=>document.querySelector(s), esc=s=>String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
 const cfg=window.NV_CONFIG||{},sb=window.supabase?.createClient(cfg.supabaseUrl,cfg.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
 let session=null,profile=null,tab='inicio',modal=null,events=[],notes=[],shopping=[],products=[],menuToday=null,menuTomorrow=null,girlsToday=null,girlsTomorrow=null,selected=new Date().toLocaleDateString('en-CA'),month=new Date(new Date().getFullYear(),new Date().getMonth(),1),personFilter='Todos',custody={enabled:false,child:'Adri',frequency:'weekly',start:'',startsWithMe:true,color:'#7c6cf2'},girlPhotoRows=[];window.NV_GIRL_PHOTOS={};
 const FAMILY=['Familia','Óscar','Tati','Adri','Siena'],nav=['inicio','calendario','notas','compra','menu','ninas','usuario'];
