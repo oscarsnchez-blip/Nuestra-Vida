@@ -39,9 +39,9 @@ window.addEventListener('nv-girl-photos-updated',()=>{if(open)render(false)});wi
 let busy=false;new MutationObserver(()=>{if(busy)return;busy=true;requestAnimationFrame(()=>{install();busy=false})}).observe(document.documentElement,{childList:true,subtree:true});install();
 })();
 
-/* v0.97 - Niñas > Comedor semanal */
+/* v0.98 - Niñas > Comedor semanal vía Supabase */
 (()=>{
-const API='https://menus.gbcorporacion.com/services/api/CartaMenu/DescargarMenuPDF/',DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
+const API='https://nplozzwwahkalocppiqp.supabase.co/functions/v1/descargar-menu-comedor',DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
 let monday=startWeek(new Date()),data={},loading=false,message='';
 function startWeek(v){let d=new Date(v);d.setHours(12,0,0,0);d.setDate(d.getDate()-((d.getDay()+6)%7));return d}
 function plus(d,n){let x=new Date(d);x.setDate(x.getDate()+n);return x}
@@ -52,7 +52,7 @@ function cached(d){try{return JSON.parse(localStorage.getItem(ck(d))||'{}')}catc
 function clean(s){return String(s||'').replace(/\s*\((?:\d+|T\d+)(?:\s*,\s*(?:\d+|T\d+))*\)/g,'').replace(/\s+/g,' ').trim()}
 function parse(text,d){text=text.replace(/\s+/g,' ');let re=/\b(\d{1,2})\s+Kcal\s+[\d.,]+\s+HC\s+[\d.,]+\s+Lip\s+[\d.,]+\s+Prot\s+[\d.,]+/g,h=[...text.matchAll(re)],out={};h.forEach((x,i)=>{let day=+x[1],part=text.slice(x.index+x[0].length,h[i+1]?.index??text.length).split(/Kcal:\s*Energ/i)[0],list=part.split(/\s+-\s+/).map(clean).filter(Boolean).filter(v=>!/^Pan(?: integral)?$/i.test(v)).slice(0,5);if(list.length)out[`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(day).padStart(2,'0')}`]=list});return out}
 async function reader(){if(window.pdfjsLib)return;await new Promise((ok,no)=>{let s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js';s.onload=ok;s.onerror=no;document.head.appendChild(s)})}
-async function month(d,force){let old=cached(d);if(!force&&Object.keys(old).length)return old;let body={VistaSemanal:false,NumSemana:[1],IDIdioma:'ES',DesCentro:'COLEGIO SAN JOSE - JESUITAS',IdCentroConsumo:'32962640',IdTipoMenu:'01',DesTipoMenu:'Basal',FecMenuConsumo:`${mk(d)}-01T01:00:00`,CodSociedad:'4'},r=await fetch(API,{method:'POST',headers:{Accept:'application/pdf','Content-Type':'application/json',Sociedad:'4'},body:JSON.stringify(body)});if(!r.ok)throw Error(`No se pudo descargar el menú (${r.status}).`);await reader();let pdf=await pdfjsLib.getDocument({data:await r.arrayBuffer()}).promise,text='';for(let i=1;i<=pdf.numPages;i++){let p=await pdf.getPage(i),c=await p.getTextContent();text+=' '+c.items.map(x=>x.str).join(' ')}let out=parse(text,d);if(!Object.keys(out).length)throw Error('No se pudo interpretar el PDF del comedor.');localStorage.setItem(ck(d),JSON.stringify(out));return out}
+async function month(d,force){let old=cached(d);if(!force&&Object.keys(old).length)return old;let body={year:d.getFullYear(),month:d.getMonth()+1},r=await fetch(API,{method:'POST',headers:{Accept:'application/pdf','Content-Type':'application/json'},body:JSON.stringify(body)});if(!r.ok){let detail='';try{detail=(await r.json()).error||''}catch{}throw Error(detail||`No se pudo descargar el menú (${r.status}).`)}await reader();let pdf=await pdfjsLib.getDocument({data:await r.arrayBuffer()}).promise,text='';for(let i=1;i<=pdf.numPages;i++){let p=await pdf.getPage(i),c=await p.getTextContent();text+=' '+c.items.map(x=>x.str).join(' ')}let out=parse(text,d);if(!Object.keys(out).length)throw Error('No se pudo interpretar el PDF del comedor.');localStorage.setItem(ck(d),JSON.stringify(out));return out}
 async function load(force=false){loading=true;message='';draw();try{let end=plus(monday,4),a=await month(monday,force),b=mk(end)===mk(monday)?{}:await month(end,force);data={...a,...b}}catch(e){data={...cached(monday),...cached(plus(monday,4))};message=e.message||'No se pudo actualizar.'}loading=false;draw()}
 function safe(s){return typeof esc==='function'?esc(s):String(s).replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]))}
 function panel(){return document.querySelector('.nv-school-menu')}
@@ -64,4 +64,4 @@ new MutationObserver(install).observe(document.documentElement,{childList:true,s
 })();
 
 /* v0.97: version visible coordinada */
-(()=>{const setVersion=()=>{const node=document.querySelector('.version');if(node&&node.textContent!=='v0.97')node.textContent='v0.97'};new MutationObserver(setVersion).observe(document.documentElement,{childList:true,subtree:true});setVersion()})();
+(()=>{const setVersion=()=>{const node=document.querySelector('.version');if(node&&node.textContent!=='v0.98')node.textContent='v0.98'};new MutationObserver(setVersion).observe(document.documentElement,{childList:true,subtree:true});setVersion()})();
