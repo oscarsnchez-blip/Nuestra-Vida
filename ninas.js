@@ -39,7 +39,7 @@ window.addEventListener('nv-girl-photos-updated',()=>{if(open)render(false)});wi
 let busy=false;new MutationObserver(()=>{if(busy)return;busy=true;requestAnimationFrame(()=>{install();busy=false})}).observe(document.documentElement,{childList:true,subtree:true});install();
 })();
 
-/* v0.98 - Niñas > Comedor semanal vía Supabase */
+/* Niñas > Comedor semanal vía Supabase */
 (()=>{
 const API='https://nplozzwwahkalocppiqp.supabase.co/functions/v1/descargar-menu-comedor',DAYS=['Lunes','Martes','Miércoles','Jueves','Viernes'];
 let monday=startWeek(new Date()),data={},loading=false,message='';
@@ -63,5 +63,3 @@ if(!document.querySelector('#nv-school-menu-css')){let s=document.createElement(
 new MutationObserver(install).observe(document.documentElement,{childList:true,subtree:true});install();
 })();
 
-/* v0.97: version visible coordinada */
-(()=>{const setVersion=()=>{const node=document.querySelector('.version');if(node&&node.textContent!=='v0.98')node.textContent='v0.98'};new MutationObserver(setVersion).observe(document.documentElement,{childList:true,subtree:true});setVersion()})();
