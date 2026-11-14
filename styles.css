@@ -94,3 +94,6 @@ html,body{background:var(--page);color:var(--ink)}header,nav{background:#f4f1e9f
 
 /* v1.06 dialogos de confirmacion por encima de edicion */
 .nv-dialog-wrap{z-index:20050!important}.nv-dialog{position:relative;z-index:20051!important}.day-popup-wrap{z-index:10000!important}
+
+/* Supermercados plegables */
+.shop-store-head{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:38px;padding:6px 8px;border:0;background:transparent;color:inherit;text-align:left}.shop-store-head span{display:flex;align-items:center;gap:8px}.shop-store-head b{font-size:15px}.shop-store-head em{display:grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:rgba(255,255,255,.62);font-size:11px;font-style:normal}.shop-store-head>i{font-size:14px;font-style:normal}.shop-list.closed .shop-store-body{display:none}.shop-list.closed{padding-bottom:4px}.shop-list.open .shop-store-body{display:block}
